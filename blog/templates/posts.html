@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Posts</h1>
+
+    {% for post in posts %}
+        <div class="p-3">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                    </div>
+    
+                    <div class="col-9 text-dark">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.content|truncatechars:100|safe }}</p>
+                        <p>{{ post.date|date:"M d Y" }}</p>
+                        <a href="{% url 'blog:single_post' post.id %}" class="btn btn-primary">{{ post.title }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
